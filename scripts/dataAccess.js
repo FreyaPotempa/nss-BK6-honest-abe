@@ -4,7 +4,8 @@ const localData = {
     politicians: [],
     corporations: [],
     pacs: [],
-    corporateDonations: []
+    corporateDonations: [],
+    pacDonations: []
 }
 
 const API = "http://localhost:8088"
@@ -48,6 +49,16 @@ export const fetchCorporateDonations = () => {
         }
     )
 }
+
+export const fetchPACDonations = () => {
+    return fetch(`${API}/pacdonations`)
+    .then(response => response.json())
+    .then(
+        (pacDonationList) => {
+            localData.pacDonations = pacDonationList
+        }
+    )
+}
     
 export const getPoliticians = () => {
     return localData.politicians.map(politician => ({...politician}))
@@ -63,4 +74,8 @@ export const getPacs = () => {
 
 export const getCorpDonations = () => {
     return localData.corporateDonations.map(corpDonation => ({...corpDonation}))
+}
+
+export const getPACDonations = () => {
+    return localData.pacDonations.map(pacDonation => ({...pacDonation}))
 }

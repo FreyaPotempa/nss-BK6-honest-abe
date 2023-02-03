@@ -26,9 +26,24 @@ export const Corporations = () => {
 export const PACs = () => {
     const pacs = getPacs()
     const corpDonations = getCorpDonations()
+    const corporations = getCorporations()
 
     const pacDonors = (pac) => {
+        //creates a filtered list of all donation objects that match the PAC Id
         const pacDonorList = corpDonations.filter(corpDonation => corpDonation.pacId === pac.id)
+
+        //matches the donation object to the corporate object so I can access the corporation name
+        const matchPACDonor = (pacDonor) => {
+            const PACDonorName = corporations.find(corp => corp.id === pacDonor.corporationId)
+            return `${PACDonorName.company}`
+        }
+
+        return `<ul>
+        ${pacDonorList.map(pacDonor => {
+            return `<li>${matchPACDonor(pacDonor)} ($${pacDonor.amount})</li>`
+        }).join("")}
+        </ul>`
+
     }
 
     let html = `
@@ -49,5 +64,7 @@ export const PACs = () => {
         </section>`
     }).join("")}
     </article>`
+
+    return html
 
 }

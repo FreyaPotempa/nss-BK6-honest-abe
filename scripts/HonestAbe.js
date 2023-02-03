@@ -1,4 +1,4 @@
-import { Corporations } from "./Corporations.js"
+import { Corporations, PACs } from "./Corporations.js"
 import { Politicians } from "./Politicians.js"
 
 
@@ -12,6 +12,9 @@ export const HonestAbe = () => {
     </section>
     <section class="corporations">
     ${Corporations()}
+    </section>
+    <section class="pacs">
+    ${PACs()}
     </section>
     `
 }

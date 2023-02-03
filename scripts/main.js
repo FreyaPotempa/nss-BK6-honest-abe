@@ -1,4 +1,4 @@
-import { fetchCorporateDonations, fetchCorporations, fetchPACs, fetchPoliticians } from "./dataAccess.js"
+import { fetchCorporateDonations, fetchCorporations, fetchPACDonations, fetchPACs, fetchPoliticians } from "./dataAccess.js"
 import { HonestAbe } from "./HonestAbe.js"
 
 
@@ -9,6 +9,7 @@ export const renderAll = () => {
     .then(() => fetchCorporations())
     .then(() => fetchPACs())
     .then(() => fetchCorporateDonations())
+    .then(() => fetchPACDonations())
     .then(
         () => {
             mainContainer.innerHTML = HonestAbe()
