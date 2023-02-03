@@ -1,0 +1,16 @@
+.politicians {
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px dotted red;
+}
+
+.politician {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid blue;
+    flex-basis: 45%;
+    padding: 8px;
+    margin: 10px;
+}
+

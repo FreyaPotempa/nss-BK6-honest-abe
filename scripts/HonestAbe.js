@@ -8,8 +8,6 @@ export const HonestAbe = () => {
     <header class="top">
     <h1>Honest Abe</h1>
     </header>
-    <section class="politicians">
     ${PoliticiansFull()}
-    </section>
     `
 }
