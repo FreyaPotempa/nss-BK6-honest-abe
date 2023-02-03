@@ -1,20 +1,22 @@
-import { fetchCorporateDonations, fetchCorporations, fetchPACDonations, fetchPACs, fetchPoliticians } from "./dataAccess.js"
+import { fetchCorpInterests, fetchCorporateDonations, fetchCorporations, fetchInterests, fetchLegislation, fetchPACDonations, fetchPACs, fetchPoliticianBills, fetchPoliticians } from "./dataAccess.js"
 import { HonestAbe } from "./HonestAbe.js"
 
 
 const mainContainer = document.querySelector('#container')
 
-export const renderAll = () => {
-    fetchPoliticians()
-    .then(() => fetchCorporations())
-    .then(() => fetchPACs())
-    .then(() => fetchCorporateDonations())
-    .then(() => fetchPACDonations())
-    .then(
-        () => {
-            mainContainer.innerHTML = HonestAbe()
-        }
-    )
+async function renderAll() {
+    await Promise.all([
+    fetchPoliticians(), 
+    fetchCorporations(), 
+    fetchPACs(), 
+    fetchCorporateDonations(),
+    fetchPACDonations(),
+    fetchLegislation(),
+    fetchPoliticianBills(),
+    fetchInterests(),
+    fetchCorpInterests()
+    ])
+    mainContainer.innerHTML = HonestAbe()
 }
 
 renderAll()

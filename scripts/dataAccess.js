@@ -5,7 +5,11 @@ const localData = {
     corporations: [],
     pacs: [],
     corporateDonations: [],
-    pacDonations: []
+    pacDonations: [],
+    bills: [],
+    politicianBills: [],
+    interests: [],
+    corpInterests: []
 }
 
 const API = "http://localhost:8088"
@@ -59,6 +63,48 @@ export const fetchPACDonations = () => {
         }
     )
 }
+
+export const fetchLegislation = () => {
+    return fetch(`${API}/legislations`)
+    .then(response => response.json())
+    .then(
+        (billList) => {
+            localData.bills = billList
+        }
+
+    )
+}
+
+export const fetchPoliticianBills = () => {
+    return fetch(`${API}/politicianlegislations`)
+    .then(response => response.json())
+    .then(
+        (politicianBillList) => {
+            localData.politicianBills = politicianBillList
+        }
+
+    )
+}
+
+export const fetchInterests = () => {
+    return fetch(`${API}/interests`)
+    .then(response => response.json())
+    .then(
+        (interestList) => {
+            localData.interests = interestList
+        }
+    )
+}
+
+export const fetchCorpInterests = () => {
+    return fetch(`${API}/corporateinterests`)
+    .then(response => response.json())
+    .then(
+        (corpInterestList) => {
+            localData.corpInterests = corpInterestList
+        }
+    )
+}
     
 export const getPoliticians = () => {
     return localData.politicians.map(politician => ({...politician}))
@@ -78,4 +124,20 @@ export const getCorpDonations = () => {
 
 export const getPACDonations = () => {
     return localData.pacDonations.map(pacDonation => ({...pacDonation}))
+}
+
+export const getBills = () => {
+    return localData.bills.map(bill => ({...bill}))
+}
+
+export const getPoliticianBills = () => {
+    return localData.politicianBills.map(politicianBill => ({...politicianBill}))
+}
+
+export const getInterests = () => {
+    return localData.interests.map(interest => ({...interest}))
+}
+
+export const getCorpInterests = () => {
+    return localData.corpInterests.map(corpInterest => ({...corpInterest}))
 }
